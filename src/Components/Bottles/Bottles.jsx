@@ -4,11 +4,19 @@ import Bottle from './Bottle';
 function Bottles() {
   const [bottles, setBottles] = useState([]);
 
-  useEffect(() => {
-    fetch('../../../public/bottles.json')
-      .then(res => res.json())
-      .then(data => setBottles(data));
-  }, []);
+useEffect(() => {
+  const fetchBottles = async () => {
+    try {
+      const res = await fetch('/bottles.json');
+      const data = await res.json();
+      setBottles(data);
+    } catch (error) {
+      console.error('Error fetching bottles:', error);
+    }
+  };
+
+  fetchBottles();
+}, []);
 
   return (
     <div>
