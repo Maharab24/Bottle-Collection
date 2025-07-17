@@ -1,12 +1,55 @@
-# React + Vite
+# Bottle Collection
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Bottle Collection** is a simple e-commerce web application built with **ReactJS**, **Vite**, and a **custom API**. Users can browse a collection of bottles, view details, and add their desired bottles to a cart — simulating an online shopping experience.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+-  Browse a variety of bottles
+-  Add bottles to cart
+-  View cart with item count (synced with localStorage)
+-  Fast performance using Vite
+-  Client-side routing with React Router
+-  Smart state updates (cart count without page reload)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+##  Tech Stack
+
+| Technology   | Purpose                         |
+|--------------|----------------------------------|
+| ReactJS      | Frontend library                 |
+| Vite         | Build tool for fast dev server   |
+| Tailwind CSS | Styling framework                |
+| DaisyUI      | Pre-built Tailwind components    |
+| Custom API   | Bottle data fetching             |
+| localStorage | Client-side cart persistence     |
+| React Router | Page navigation                  |
+
+---
+
+## 📂 Project Structure
+
+bottle-collection/
+├── public/
+│   └── bottles.json
+├── src/
+│   ├── Components/
+│   │   ├── Bottles/
+│   │   │   ├── Bottle.jsx
+│   │   │   └── Bottles.jsx
+│   │   ├── Body/
+│   │   │   └── Body.jsx
+│   │   ├── Cart/
+│   │   │   └── CartPage.jsx
+│   │   └── Home/
+│   │       └── Header.jsx
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── index.css
+├── tailwind.config.js
+├── package.json
+├── vite.config.js
+└── README.md
+

@@ -85,7 +85,7 @@ function Header() {
                             {['Home', 'Collection', 'Categories', 'About', 'Contact'].map((item) => (
                                 <li key={item}>
                                     <a
-                                        href="#"
+                                        href="/"
                                         className="relative py-2 group"
                                     >
                                         <span className={`group-hover:text-amber-300 transition-colors duration-300 ${
