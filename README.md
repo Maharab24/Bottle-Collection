@@ -1,6 +1,6 @@
 # Bottle Collection
 
-**Bottle Collection** is a simple e-commerce web application built with **ReactJS**, **Vite**, and a **custom API**. Users can browse a collection of bottles, view details, and add their desired bottles to a cart — simulating an online shopping experience.
+**Bottle Collection** is a simple, **responsive** e-commerce web application built with **ReactJS**, **Vite**, and a **custom API**. Users can browse a collection of bottles, view details, and add their desired bottles to a cart — simulating an online shopping experience.
 
 ---
 
