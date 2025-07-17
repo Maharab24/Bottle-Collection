@@ -142,7 +142,7 @@ function Header() {
                         {['Home', 'Collection', 'Categories', 'About', 'Contact'].map((item) => (
                             <li key={item}>
                                 <a
-                                    href="#"
+                                    href="\"
                                     className={`block py-2 pl-2 border-l-2 transition-all duration-200 hover:pl-3 ${
                                         isScrolled
                                             ? 'border-indigo-600 text-gray-700 hover:border-indigo-800'
