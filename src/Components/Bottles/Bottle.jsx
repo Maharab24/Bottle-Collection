@@ -1,7 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 function Bottle({ product }) {
   const [quantity, setQuantity] = useState(0);
+  const [showAlert, setShowAlert] = useState(false);
+  const alertTimeoutRef = useRef(null);
+
+  // Cleanup timeout on component unmount
+  useEffect(() => {
+    return () => {
+      if (alertTimeoutRef.current) {
+        clearTimeout(alertTimeoutRef.current);
+      }
+    };
+  }, []);
 
   const increaseQuantity = () => {
     if (quantity < product.stock) setQuantity(quantity + 1);
@@ -37,20 +48,48 @@ function Bottle({ product }) {
       // Save updated cart to localStorage
       localStorage.setItem('bottleCart', JSON.stringify(existingCart));
 
-       // Dispatch custom event to notify Header
-    const cartUpdatedEvent = new Event('cartUpdated');
-    window.dispatchEvent(cartUpdatedEvent);
-    
+      // Dispatch custom event to notify Header
+      const cartUpdatedEvent = new Event('cartUpdated');
+      window.dispatchEvent(cartUpdatedEvent);
+
       // Reset quantity
       setQuantity(0);
 
-      // Optional: Show confirmation
-      alert(`${quantity} ${product.name} added to cart!`);
+      // Show custom alert
+      setShowAlert(true);
+
+      // Hide alert after 3 seconds
+      alertTimeoutRef.current = setTimeout(() => {
+        setShowAlert(false);
+      }, 3000);
     }
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 font-sans">
+    <div className="max-w-4xl mx-auto p-6 font-sans relative">
+      {/* Success Alert */}
+      {showAlert && (
+        <div
+          className="fixed top-4 right-4 z-50 animate-fadeInOut"
+          style={{ animation: 'fadeInOut 3s ease-in-out' }}
+        >
+          <div role="alert" className="alert alert-success shadow-lg">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6 shrink-0 stroke-current"
+              fill="none"
+              viewBox="0 0 24 24">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>Your purchase has been confirmed!</span>
+          </div>
+        </div>
+      )}
+
       <div className="bg-white rounded-xl shadow-md overflow-hidden flex flex-col md:flex-row">
         {/* Product Image */}
         <div className="md:w-2/5 p-6 flex items-center justify-center bg-gray-50">
@@ -129,6 +168,19 @@ function Bottle({ product }) {
           </div>
         </div>
       </div>
+
+      {/* Add custom animation to your CSS */}
+      <style jsx>{`
+        @keyframes fadeInOut {
+          0% { opacity: 0; transform: translateY(-20px); }
+          10% { opacity: 1; transform: translateY(0); }
+          90% { opacity: 1; transform: translateY(0); }
+          100% { opacity: 0; transform: translateY(-20px); }
+        }
+        .animate-fadeInOut {
+          animation: fadeInOut 3s ease-in-out;
+        }
+      `}</style>
     </div>
   );
 }
